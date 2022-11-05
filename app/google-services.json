@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "796010909560",
+    "project_id": "phone-otp-584fe",
+    "storage_bucket": "phone-otp-584fe.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:796010909560:android:39e092ae69db062d6fc28d",
+        "android_client_info": {
+          "package_name": "com.project1.phoneauthentication"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "796010909560-53pa1pcqe00gh191h1fqlge3mr4d86ad.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDUPAAUz628Z7jSOFpIaBtoDbc_ZxcAejA"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "796010909560-53pa1pcqe00gh191h1fqlge3mr4d86ad.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
