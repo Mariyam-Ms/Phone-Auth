@@ -75,18 +75,11 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onCodeSent(@NonNull String s, @NonNull PhoneAuthProvider.ForceResendingToken forceResendingToken) {
                 super.onCodeSent(s, forceResendingToken);
+                Intent otpIntent = new Intent(MainActivity.this, OtpActivity.class);
+                otpIntent.putExtra("auth", s);
+                startActivity(otpIntent);
 
                 Toast.makeText(MainActivity.this, "Otp has been sent", Toast.LENGTH_SHORT).show();
-                new Handler().postDelayed(new Runnable() {
-                    @Override
-                    public void run() {
-
-                        Intent otpIntent = new Intent(MainActivity.this, OtpActivity.class);
-                        otpIntent.putExtra("auth", s);
-                        startActivity(otpIntent);
-
-                    }
-                }, 10000);
 
 
             }
