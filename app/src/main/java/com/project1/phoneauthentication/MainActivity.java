@@ -6,9 +6,10 @@ import androidx.appcompat.widget.AppCompatButton;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.os.Handler;
+
 import android.view.View;
 import android.widget.EditText;
+import android.widget.ProgressBar;
 import android.widget.Toast;
 
 import com.google.android.gms.tasks.OnCompleteListener;
@@ -26,6 +27,7 @@ import java.util.concurrent.TimeUnit;
 public class MainActivity extends AppCompatActivity {
     private AppCompatButton aSendOtp;
     private EditText aCountryCode, aPhoneNumber;
+    private ProgressBar progressBar;
     private FirebaseAuth firebaseAuth;
     private PhoneAuthProvider.OnVerificationStateChangedCallbacks mCallBacks;
 
@@ -35,12 +37,15 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
         aPhoneNumber = findViewById(R.id.phoneNumber);
         aCountryCode = findViewById(R.id.countryCode);
+        progressBar=findViewById(R.id.aprogressBar);
         aSendOtp = findViewById(R.id.sendCodeButton);
         firebaseAuth = FirebaseAuth.getInstance();
+        progressBar.setVisibility(View.INVISIBLE);
 
         aSendOtp.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                progressBar.setVisibility(View.VISIBLE);
                 String country_code = aCountryCode.getText().toString();
                 String phone = aPhoneNumber.getText().toString();
                 String phoneNumber = "+" + country_code + "" + phone;
@@ -75,6 +80,7 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onCodeSent(@NonNull String s, @NonNull PhoneAuthProvider.ForceResendingToken forceResendingToken) {
                 super.onCodeSent(s, forceResendingToken);
+                progressBar.setVisibility(View.INVISIBLE);
                 Intent otpIntent = new Intent(MainActivity.this, OtpActivity.class);
                 otpIntent.putExtra("auth", s);
                 startActivity(otpIntent);
@@ -111,6 +117,8 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onComplete(@NonNull Task<AuthResult> task) {
                 if(task.isSuccessful()){
+
+
                     sentToHome();
                 }else{
                     Toast.makeText(MainActivity.this, task .getException().getMessage(), Toast.LENGTH_SHORT).show();
